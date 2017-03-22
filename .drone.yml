@@ -16,6 +16,3 @@ pipeline:
       script:
         - echo hello
         - echo world
-        - apt update
-        - apt upgrade -y
-        - lsb_release -r
