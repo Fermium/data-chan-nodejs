@@ -32,4 +32,4 @@ deploy:
       code: |
         echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
         npm publish || true
-        echo "published"
+        echo "The exit code has been forced to 0 to avoid error if version is already published"
