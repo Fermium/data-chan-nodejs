@@ -22,7 +22,7 @@ build:
       name: Download Data-chan executable
       code: |
         pip install -r data-chan/scripts/requirements.txt
-        python data-chan/scripts/post-build-hook.py --bucket data-chan-js-binaries --download
+        (cd data-chan && python scripts/post-build-hook.py --bucket data-chan-js-binaries --download ../)
           
 deploy:        
   steps:
