@@ -1,5 +1,9 @@
-build:
-  image: ubuntu:xenial
-  commands:
-    - sudo apt install nodejs
-    - echo "muhahahahah"
+pipeline:
+  build:
+    image: ubuntu
+    commands:
+      - apt update
+      - apt install -y nodejs
+      - apt install -y lsb-release
+      - lsb_release -r
+      - echo "muahahahah"
