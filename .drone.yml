@@ -11,7 +11,7 @@ pipeline:
       image: appleboy/drone-ssh
       host: 163.172.140.121
       username: root
-      password: donotspamme
+      password: "donotspamme"
       port: 22
       script:
         - echo hello
