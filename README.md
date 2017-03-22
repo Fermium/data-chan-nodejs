@@ -1,2 +1,1 @@
-# data-chan-nodejs
-NodeJS APIs for Data-chan
+# Data-chan NodeJS FFI library
