@@ -10,8 +10,8 @@ pipeline:
   ssh:
       image: appleboy/drone-ssh
       host: e08c1aa4-08e4-4028-a057-811ddb38a712.pub.cloud.scaleway.com
-      username: root
-      password: "donotspamme"
+      username: ubuntu
+      password: 1234567890
       port: 22
       script:
         - echo hello
