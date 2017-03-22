@@ -39,5 +39,4 @@ deploy:
     - script:
       name: Deploy on npmjs.com
       code: |
-        npm pack
-        npm run ci-publish || true          
+        npm run ci-publish      
