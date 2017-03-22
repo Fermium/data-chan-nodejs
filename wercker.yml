@@ -31,5 +31,5 @@ deploy:
     - script:
       name: Deploy on npmjs.com
       code: |
-      echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-      npm publish
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        npm publish
