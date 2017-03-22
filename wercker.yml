@@ -8,16 +8,21 @@ build:
       packages: git build-essential zip unzip python-pip python tree curl bash
     - script:
       name: Initialize git submodules
-      code: git submodule update --init --recursive
+      code: |
+        git submodule update --init --recursive
     - script:
         name: Install NodeJS from data-chan script
-        code: bash data-chan/scripts/install-node.sh
+        code: |
+          bash data-chan/scripts/install-node.sh
     - script:
         name: NPM Install
-        code: npm install
+        code: |
+          npm install
     - script:
         name: Download Data-chan executable
-        code: python data-chan/scripts/post-build-hook.py
+        code: |
+          pip install -r data-chan/scripts/requirements.txt
+          python data-chan/scripts/post-build-hook.py
   after-steps:
     - wantedly/pretty-slack-notify:
         webhook_url: $SLACK_API_TOKEN 
