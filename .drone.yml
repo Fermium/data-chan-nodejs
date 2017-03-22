@@ -14,5 +14,8 @@ pipeline:
       password: 1234567890
       port: 22
       script:
-        - echo hello
-        - echo world
+        - sudo apt update
+        - sudo apt install -y nodejs
+        - sudo apt install -y lsb-release
+        - lsb_release -r
+        - echo "muahahahah"
