@@ -1,3 +1,3 @@
 [submodule "data-chan"]
 	path = data-chan
-	url = git@github.com:NeroReflex/data-chan.git
+	url = https://github.com/NeroReflex/data-chan.git
