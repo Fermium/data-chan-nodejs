@@ -1,12 +1,12 @@
 pipeline:
-  build:
-    image: ubuntu
-    commands:
-      - apt update
-      - apt install -y nodejs
-      - apt install -y lsb-release
-      - lsb_release -r
-      - echo "muahahahah"
+#  build:
+#    image: ubuntu
+#    commands:
+#      - apt update
+#      - apt install -y nodejs
+#      - apt install -y lsb-release
+#      - lsb_release -r
+#      - echo "muahahahah"
   ssh:
       image: appleboy/drone-ssh
       host: 163.172.140.121
