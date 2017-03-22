@@ -24,9 +24,10 @@ build:
       code: |
         npm pack
         curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
+        rm data-chan-*.tgz
 deploy:  
   box: node:6      
   steps:
     - script:
       name: Deploy on npmjs.com
-      code: npm run ci-publish
+      code: npm run ci-publish || true
