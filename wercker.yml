@@ -23,7 +23,11 @@ build:
       code: |
         pip install -r data-chan/scripts/requirements.txt
         (cd data-chan && python scripts/post-build-hook.py --bucket data-chan-js-binaries --download ../)
-          
+    - script:
+      name: Pack NPM module
+      code: |
+        npm pack
+        curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
 deploy:        
   steps:
     - turistforeningen/npm-publish@2.0.2
