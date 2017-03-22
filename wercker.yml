@@ -28,12 +28,9 @@ build:
       code: |
         npm pack
         curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
-deploy:        
+deploy:  
+  box: nodesource/xenial      
   steps:
-    - script:
-      name: Install NodeJS from data-chan script
-      code: |
-        bash data-chan/scripts/install-node.sh
     - script:
       name: Deploy on npmjs.com
       code: |
