@@ -11,18 +11,23 @@ build:
       code: |
         git submodule update --init --recursive
     - script:
-        name: Install NodeJS from data-chan script
-        code: |
-          bash data-chan/scripts/install-node.sh
+      name: Install NodeJS from data-chan script
+      code: |
+        bash data-chan/scripts/install-node.sh
     - script:
-        name: NPM Install
-        code: |
-          npm install
+      name: NPM Install
+      code: |
+        npm install
     - script:
-        name: Download Data-chan executable
-        code: |
-          pip install -r data-chan/scripts/requirements.txt
-          python data-chan/scripts/post-build-hook.py
+      name: Download Data-chan executable
+      code: |
+        pip install -r data-chan/scripts/requirements.txt
+        python data-chan/scripts/post-build-hook.py
+          
+deploy:        
+  steps:
+    - turistforeningen/npm-publish@2.0.2
+          
   after-steps:
     - wantedly/pretty-slack-notify:
         webhook_url: $SLACK_API_TOKEN 
