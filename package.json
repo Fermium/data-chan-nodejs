@@ -1,11 +1,8 @@
 {
   "name": "data-chan",
-  "version": "0.1.7",
-  "description": "A comunication framework between an Atmega32u4 and a pc",
+  "version": "0.2.0",
+  "description": "NodeJS library for Data-chan USB comunication library",
   "main": "data-chan.js",
-  "directories": {
-    "doc": "docs"
-  },
   "dependencies": {
     "ffi": "^2.2.0",
     "ref": "^1.3.3",
@@ -15,17 +12,16 @@
     "node-gyp": "^3.4.0"
   },
   "scripts": {
-    "test": "make debug",
-    "exec": "exec"
+    "test": "make debug"
     },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NeroReflex/data-chan.git"
+    "url": "git@github.com:fermiumlabs/data-chan-nodejs.git"
   },
-  "author": "Denis Benato",
+  "author": "Fermium LABS srl",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
-    "url": "https://github.com/NeroReflex/data-chan/issues"
+    "url": "https://github.com/fermiumlabs/data-chan-nodejs/issues"
   },
-  "homepage": "https://github.com/NeroReflex/data-chan#readme"
+  "homepage": "https://github.com/fermiumlabs/data-chan-nodejs"
 }

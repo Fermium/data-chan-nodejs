@@ -1,0 +1,20 @@
+# docker box definition
+box: ubuntu:xenial
+
+# defining the dev pipeline
+build:
+  steps:
+    - install-packages:
+      packages: git build-essential zip unzip python-pip python
+    - script:
+        name: Install NodeJS from data-chan script
+        code: ls ; bash data-chan/scripts/install-node.sh
+    - script:
+        name: NPM Install
+        code: npm install
+    - script:
+        name: Download Data-chan executable
+        code: python data-chan/scripts/post-build-hook.py
+  after-steps:
+    - wantedly/pretty-slack-notify:
+        webhook_url: $SLACK_API_TOKEN 
