@@ -30,4 +30,6 @@ deploy:
   steps:
     - script:
       name: Deploy on npmjs.com
-      code: $(npm bin)/ci-publish
+      code: |
+      echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      npm publish

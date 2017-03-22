@@ -9,12 +9,10 @@
     "ref-struct": "^1.1.0"
   },
   "devDependencies": {
-    "ci-publish": "^1.3.0",
     "node-gyp": "^3.4.0"
   },
   "scripts": {
-    "test": "make debug",
-    "ci-publish": "ci-publish"
+    "test": "make debug"
   },
   "repository": {
     "type": "git",
