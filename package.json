@@ -1,6 +1,6 @@
 {
   "name": "data-chan",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "NodeJS library for Data-chan USB comunication library",
   "main": "data-chan.js",
   "dependencies": {
@@ -21,7 +21,7 @@
     "url": "git@github.com:fermiumlabs/data-chan-nodejs.git"
   },
   "author": "Fermium LABS srl",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/fermiumlabs/data-chan-nodejs/issues"
   },

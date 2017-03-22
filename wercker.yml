@@ -30,8 +30,6 @@ build:
         curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
 deploy:        
   steps:
-    - install-packages:
-      packages: git build-essential zip unzip python-pip python tree curl bash
     - script:
       name: Install NodeJS from data-chan script
       code: |
