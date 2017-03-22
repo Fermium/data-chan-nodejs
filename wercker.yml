@@ -1,5 +1,5 @@
 # docker box definition
-box: ubuntu:xenial
+box: node:6
 
 # defining the dev pipeline
 build:
@@ -10,10 +10,6 @@ build:
       name: Initialize git submodules
       code: |
         git submodule update --init --recursive
-    - script:
-      name: Install NodeJS from data-chan script
-      code: |
-        bash data-chan/scripts/install-node.sh
     - script:
       name: NPM Install
       code: |
@@ -29,9 +25,8 @@ build:
         npm pack
         curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
 deploy:  
-  box: nodesource/xenial      
+  box: node:6      
   steps:
     - script:
       name: Deploy on npmjs.com
-      code: |
-        npm run ci-publish      
+      code: npm run ci-publish
