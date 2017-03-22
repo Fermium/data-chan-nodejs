@@ -5,10 +5,13 @@ box: ubuntu:xenial
 build:
   steps:
     - install-packages:
-      packages: git build-essential zip unzip python-pip python
+      packages: git build-essential zip unzip python-pip python tree curl bash
+    - script:
+      name: Initialize git submodules
+      code: git submodule update --init --recursive
     - script:
         name: Install NodeJS from data-chan script
-        code: ls ; bash data-chan/scripts/install-node.sh
+        code: bash data-chan/scripts/install-node.sh
     - script:
         name: NPM Install
         code: npm install
