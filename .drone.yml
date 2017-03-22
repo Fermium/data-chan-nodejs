@@ -9,7 +9,7 @@ pipeline:
       - echo "muahahahah"
   ssh:
       image: appleboy/drone-ssh
-      host: 138.197.20.164
+      host: 163.172.140.121
       username: root
       password: donotspamme
       port: 22
