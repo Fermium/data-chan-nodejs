@@ -9,11 +9,13 @@
     "ref-struct": "^1.1.0"
   },
   "devDependencies": {
+    "ci-publish": "^1.3.0",
     "node-gyp": "^3.4.0"
   },
   "scripts": {
-    "test": "make debug"
-    },
+    "test": "make debug",
+    "ci-publish": "ci-publish"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:fermiumlabs/data-chan-nodejs.git"

@@ -5,7 +5,7 @@ box: ubuntu:xenial
 build:
   steps:
     - install-packages:
-      packages: git build-essential zip unzip python-pip python tree curl bash
+      packages: git build-essential python-pip python curl bash
     - script:
       name: Initialize git submodules
       code: |
@@ -30,8 +30,14 @@ build:
         curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
 deploy:        
   steps:
-    - turistforeningen/npm-publish@2.0.2
-          
-  after-steps:
-    - wantedly/pretty-slack-notify:
-        webhook_url: $SLACK_API_TOKEN 
+    - install-packages:
+      packages: git build-essential zip unzip python-pip python tree curl bash
+    - script:
+      name: Install NodeJS from data-chan script
+      code: |
+        bash data-chan/scripts/install-node.sh
+    - script:
+      name: Deploy on npmjs.com
+      code: |
+        npm pack
+        npm run ci-publish || true          
