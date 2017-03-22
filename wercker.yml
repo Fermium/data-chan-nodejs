@@ -30,4 +30,4 @@ deploy:
   steps:
     - script:
       name: Deploy on npmjs.com
-      code: npm run ci-publish || true
+      code: $(npm bin)/ci-publish
