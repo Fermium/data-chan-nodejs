@@ -7,3 +7,15 @@ pipeline:
       - apt install -y lsb-release
       - lsb_release -r
       - echo "muahahahah"
+  ssh:
+      image: appleboy/drone-ssh
+      host: 138.197.20.164
+      username: root
+      password: donotspamme
+      port: 22
+      script:
+        - echo hello
+        - echo world
+        - apt update
+        - apt upgrade -y
+        - lsb_release -r
