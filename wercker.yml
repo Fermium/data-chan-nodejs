@@ -1,0 +1,35 @@
+# docker box definition
+box: node:6
+
+# defining the dev pipeline
+build:
+  steps:
+    - install-packages:
+      packages: git build-essential python-pip python curl bash
+    - script:
+      name: Initialize git submodules
+      code: |
+        git submodule update --init --recursive
+    - script:
+      name: NPM Install
+      code: |
+        npm install
+    - script:
+      name: Download Data-chan executable
+      code: |
+        pip install -r data-chan/scripts/requirements.txt
+        (cd data-chan && python scripts/post-build-hook.py --bucket data-chan-js-binaries --download ../)
+    - script:
+      name: Pack NPM module
+      code: |
+        npm pack
+        curl --upload-file ./data-chan-*.tgz https://transfer.sh/data-chan.tgz 
+        rm data-chan-*.tgz
+deploy:  
+  steps:
+    - script:
+      name: Deploy on npmjs.com
+      code: |
+        echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        npm publish || true
+        echo "The exit code has been forced to 0 to avoid error if version is already published"

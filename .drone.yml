@@ -1,22 +1,19 @@
 pipeline:
-#  build:
-#    image: ubuntu
-#    commands:
-#      - apt update
-#      - apt install -y nodejs
-#      - apt install -y lsb-release
-#      - lsb_release -r
-#      - echo "muahahahah"
-  ssh:
-      image: appleboy/drone-ssh
-      host: e08c1aa4-08e4-4028-a057-811ddb38a712.pub.cloud.scaleway.com
-      username: ubuntu
-      password: 1234567890
-      port: 22
-      script:
-        - export DEBIAN_FRONTEND=noninteractive
-        - sudo apt update
-        - sudo apt install -y nodejs
-        - sudo apt install -y lsb-release
-        - lsb_release -r
-        - echo "muahahahah"
+  build:
+    image: node:6
+    commands:
+      - echo "Ok"
+
+
+#  ssh:
+#      image: appleboy/drone-ssh
+#      host: e08c1aa4-08e4-4028-a057-811ddb38a712.pub.cloud.scaleway.com
+#      username: ubuntu
+#      password: 1234567890
+#      port: 22
+#      script:
+#        - export DEBIAN_FRONTEND=noninteractive
+#        - sudo apt update
+#        - sudo apt install -y nodejs
+#        - sudo apt install -y lsb-release
+#        - lsb_release -r
