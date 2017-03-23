@@ -1,7 +1,12 @@
 pipeline:
   build:
     image: node:6
+    devices:
+      - "/dev/bus/usb:/dev/bus/usb"
+    privileged: true
     commands:
+      - sudo apt update
+      - sudo apt install usbutils
       - echo "Ok"
 
 
