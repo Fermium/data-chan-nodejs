@@ -1,24 +1,55 @@
 pipeline:
-  build:
-    image: node:6
-    devices:
+
+  download_datachan_lib:
+    image: python
+    commands:
+      - export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - pip install -r data-chan/scripts/requirements.txt
+      - (cd data-chan && python scripts/post-build-hook.py --bucket data-chan-js-binaries --download ../ )
+
+  flash_device:
+    image: ubuntu:xenial
+    # see https://github.com/docker/docker/issues/19763 to why we use --volumes and not --device
+    volumes:
       - "/dev/bus/usb:/dev/bus/usb"
     privileged: true
     commands:
-      - sudo apt update
-      - sudo apt install usbutils
-      - echo "Ok"
+      - export DEBIAN_FRONTEND=noninteractive
+      - apt-get update -y -q
+      - apt-get install -y -q gcc gcc-avr avr-libc avrdude build-essential make git usbutils clang libusb-1.0-0-dev doxygen
+      - (cd data-chan && make all -j2 )
+      - (cd data-chan && make install)
+      - lsusb
+      - (cd data-chan/Host/examples/Tester && ./Tester )
+      - lsusb
+
+  build:
+    image: node:6
+    # see https://github.com/docker/docker/issues/19763 to why we use --volumes and not --device
+    volumes:
+      - "/dev/bus/usb:/dev/bus/usb"
+    privileged: true
+    commands:
+      - export DEBIAN_FRONTEND=noninteractive
+      - apt-get update -y -q
+      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev bash
+      - npm install
+# If no error has occurred (yes, it's messy, will improve)
+      - chsh -s /bin/bash
+      - test $(timeout --preserve-status 15s npm run test > npm_run_test.txt ; echo $?) -ne 1
+      - curl --upload-file ./npm_run_test.txt https://transfer.sh/npm_run_test.txt 
+
+  slack:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: project-hall-flux
+    username: drone-ci
+    icon_url: https://github.com/drone/brand/raw/master/logos/png/drone-logo_512.png
+    when:
+     status: [ failure, success ]
 
 
-#  ssh:
-#      image: appleboy/drone-ssh
-#      host: e08c1aa4-08e4-4028-a057-811ddb38a712.pub.cloud.scaleway.com
-#      username: ubuntu
-#      password: 1234567890
-#      port: 22
-#      script:
-#        - export DEBIAN_FRONTEND=noninteractive
-#        - sudo apt update
-#        - sudo apt install -y nodejs
-#        - sudo apt install -y lsb-release
-#        - lsb_release -r
+# Build only on workers that have usb on docker enabled
+labels:
+  USB: true

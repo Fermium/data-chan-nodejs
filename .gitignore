@@ -43,3 +43,6 @@ jspm_packages
 .so
 .dll
 .dylib
+*.dll
+*.dylib
+*.so

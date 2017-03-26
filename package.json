@@ -13,7 +13,7 @@
     "node-gyp": "^3.4.0"
   },
   "scripts": {
-    "test": "make debug"
+    "test": "node examples/basic.js"
   },
   "repository": {
     "type": "git",
