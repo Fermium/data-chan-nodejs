@@ -37,8 +37,7 @@ pipeline:
       - npm install
 # If no error has occurred (yes, it's messy, will improve)
       - chsh -s /bin/bash
-      - timeout --preserve-status 15s npm run test > npm_run_test.txt || true
-      - curl --upload-file ./npm_run_test.txt https://transfer.sh/npm_run_test.txt 
+      - timeout --preserve-status 10s npm run test || true
 
   slack:
     image: plugins/slack
