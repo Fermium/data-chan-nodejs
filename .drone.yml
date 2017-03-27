@@ -48,7 +48,6 @@ pipeline:
     when:
      status: [ failure, success ]
 
-
 # Build only on workers that have usb on docker enabled
 labels:
   USB: true
