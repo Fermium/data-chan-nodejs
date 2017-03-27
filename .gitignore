@@ -46,3 +46,4 @@ jspm_packages
 *.dll
 *.dylib
 *.so
+npm_run_test.txt
