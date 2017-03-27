@@ -37,7 +37,7 @@ pipeline:
       - npm install
       - timeout --preserve-status 10s npm run test > npm_run_test.txt || true
       - head -n 100 npm_run_test.txt 
-      - "[[ $(find npm_run_test.txt -type f -size +1000c 2>/dev/null) ]] && echo true || echo false"
+      - $(find npm_run_test.txt -type f -size +1000c 2>/dev/null) && echo true || echo false"
 
   slack:
     image: plugins/slack
