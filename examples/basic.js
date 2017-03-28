@@ -59,6 +59,7 @@ var scan = datachan_lib.datachan_device_acquire();
   } else {
       console.log('Error opening the device: ');
       console.log(scan.result);
+      datachan_lib.datachan_device_release(scan.device);
       datachan_lib.datachan_shutdown();
       process.exit(1);
   }
