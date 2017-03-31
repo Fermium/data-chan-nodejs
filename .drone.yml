@@ -35,8 +35,7 @@ pipeline:
       - apt-get update -y -q
       - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev 
       - npm install
-      - timeout --preserve-status 10s npm run test > npm_run_test.txt || true
-      - head -n 100 npm_run_test.txt 
+      - npm run test
 
   slack:
     image: plugins/slack
