@@ -24,7 +24,7 @@ var datachan_acquire_result_t = struct({
 
 
 
-module.exports.lib =  ffi.DynamicLibrary('./libDataChan',{
+module.exports.lib =  ffi.Library('./libDataChan',{
   'datachan_is_initialized' : [ref.types.bool,[]],
   'datachan_init' : [ref.types.void,[]],
   'datachan_shutdown' : [ref.types.void,[]],
