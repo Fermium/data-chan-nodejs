@@ -21,10 +21,11 @@ var datachan_acquire_result_t = struct({
   'result' : ref.types.int,
   'device' : datachan_device_t_ptr
 });
+var RTLD_GLOBAL = ffi.DynamicLibrary.FLAGS.RTLD_GLOBAL;
 
 
 
-module.exports.lib =  ffi.Library('./libDataChan',{
+module.exports.lib =  ffi.Library('libDataChan',{
   'datachan_is_initialized' : [ref.types.bool,[]],
   'datachan_init' : [ref.types.void,[]],
   'datachan_shutdown' : [ref.types.void,[]],
@@ -39,7 +40,7 @@ module.exports.lib =  ffi.Library('./libDataChan',{
   'datachan_device_enqueued_measures' : [ref.types.uint32,[datachan_device_t_ptr]],
   'datachan_device_set_config' : [ref.types.void,[datachan_device_t_ptr,ref.types.uint32,ref.types.uint8,void_ptr,ref.types.uint16]]
 
-});
+},RTLD_GLOBAL);
 module.exports.search_enum = {
   'uninitialized' : 0x00,
   'not_found_or_inaccessible' : 0x01,
