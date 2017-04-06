@@ -6,7 +6,7 @@
 
 This library implements NodeJS APIs for [Data-chan](https://github.com/neroreflex/data-chan)
 
-It uses foreign function interface to do so.
+It uses [foreign function interface](https://github.com/node-ffi/node-ffi) to do so.
 
 To install:
 
@@ -14,11 +14,11 @@ To install:
 npm install data-chan
 ```
 
-To test run:
+To test, run:
 
 ```shell
 git clone git@github.com:fermiumlabs/data-chan-nodejs.git
-git submodule update --init --recursive
 npm install
-npm test #still working on it!
+npm rebuild
+npm run test
 ```
