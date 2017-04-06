@@ -12,22 +12,22 @@ if(args=='-h' || args=='--help'){
   console.log('USAGE:');
   console.log('\t sudo node basic.js');
   console.log('\t Sudo is required for libusb');
-  console.log('\t -s -v : Verbose output of measures');
+  console.log('\t -s --verbose : Verbose output of measures');
   process.exit(0);
 }
 
 else{
-  verbose=args=='-s' || args=='-v';
+  verbose=args=='-s' || args=='--verbose';
 // what a good time to open a new device :)
 var scan = datachan_lib.datachan_device_acquire();
   if (scan.result == datachan_result_enum.success) {
-      console.log('Device opened!');
+      console.log('Device opened');
 
   	// this is the device you acquired
       var dev = scan.device;
       datachan_lib.datachan_device_enable(scan.device);
-
-      for(i=0;i<100;i++){
+      var i;
+      for(i=0;i<500;i++){
         if(datachan_lib.datachan_device_enqueued_measures(scan.device)){
           var measure;
           if(datachan_lib.datachan_device_is_enabled(scan.device)){
@@ -53,8 +53,10 @@ var scan = datachan_lib.datachan_device_acquire();
             }
           }
       }
+      console.log("Acquired " + i + " measures");
   	// release the device
       datachan_lib.datachan_device_release(scan.device);
+      console.log("Device Released");
 
   } else {
       console.log('Error opening the device: ');
