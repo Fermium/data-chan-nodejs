@@ -4,7 +4,7 @@
 
 # Data-chan NodeJS API
 
-[![npm](https://img.shields.io/npm/v/npm.svg)](https://www.npmjs.com/package/data-chan) [![npm](https://img.shields.io/npm/l/express.svg)]() [![npm](https://img.shields.io/npm/dm/localeval.svg)](https://www.npmjs.com/package/data-chan) [![npm](https://img.shields.io/npm/dt/express.svg)](https://www.npmjs.com/package/data-chan)
+[![npm](https://img.shields.io/npm/v/data-chan.svg)](https://www.npmjs.com/package/data-chan) [![npm](https://img.shields.io/npm/l/data-chan.svg)]() [![npm](https://img.shields.io/npm/dm/data-chan.svg)](https://www.npmjs.com/package/data-chan) 
 
 
 | Main CI | CI with Hardware |
