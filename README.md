@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/v/data-chan.svg)](https://www.npmjs.com/package/data-chan) [![npm](https://img.shields.io/npm/l/data-chan.svg)]() [![npm](https://img.shields.io/npm/dm/data-chan.svg)](https://www.npmjs.com/package/data-chan) 
 
 
-[![wercker status](https://app.wercker.com/status/75da37fe4a9fc37d604da68759866454/s/master "wercker status")](https://app.wercker.com/project/byKey/75da37fe4a9fc37d604da68759866454) *Software relase* 
+[![wercker status](https://app.wercker.com/status/75da37fe4a9fc37d604da68759866454/s/master "wercker status")](https://app.wercker.com/project/byKey/75da37fe4a9fc37d604da68759866454) *Software release* 
 
 [![Build Status](https://drone-ci.dev.fermiumlabs.com/api/badges/fermiumlabs/data-chan-nodejs/status.svg)](https://drone-ci.dev.fermiumlabs.com/fermiumlabs/data-chan-nodejs) *Hardware testing*
 
