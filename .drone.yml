@@ -21,8 +21,6 @@ pipeline:
       - (cd data-chan && make all -j2 )
       - (cd data-chan && make install)
       - lsusb
-      - (cd data-chan/Host/examples/Tester && ./Tester )
-      - lsusb
 
   build:
     image: node:6
@@ -35,6 +33,7 @@ pipeline:
       - apt-get update -y -q
       - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev tree
       - npm install
+      - rm *.dll *.dylib
       - tree -L 2
       - npm run test
 
