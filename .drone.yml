@@ -33,8 +33,9 @@ pipeline:
     commands:
       - export DEBIAN_FRONTEND=noninteractive
       - apt-get update -y -q
-      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev 
+      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev tree
       - npm install
+      - tree -L 2
       - npm run test
 
   slack:
