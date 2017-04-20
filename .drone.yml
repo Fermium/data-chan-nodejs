@@ -21,8 +21,6 @@ pipeline:
       - (cd data-chan && make all -j2 )
       - (cd data-chan && make install)
       - lsusb
-      - (cd data-chan/Host/examples/Tester && ./Tester )
-      - lsusb
 
   build:
     image: node:6
@@ -33,8 +31,10 @@ pipeline:
     commands:
       - export DEBIAN_FRONTEND=noninteractive
       - apt-get update -y -q
-      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev 
+      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev
+      - rm -rf node_modules
       - npm install
+      - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
       - npm run test
 
   slack:
