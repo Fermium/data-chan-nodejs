@@ -31,10 +31,10 @@ pipeline:
     commands:
       - export DEBIAN_FRONTEND=noninteractive
       - apt-get update -y -q
-      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev tree
+      - apt-get install -y -q coreutils build-essential libusb-1.0-0-dev
+      - rm -rf node_modules
       - npm install
-      - rm *.dll *.dylib
-      - tree -L 2
+      - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./
       - npm run test
 
   slack:
