@@ -6,18 +6,24 @@ var datachan_result_enum = datachan.search_enum;
 
 // you don't want an exception each time you open a device, right?
 datachan_lib.datachan_init();
-var args = process.argv.slice(2)[0];
-var verbose;
-if(args=='-h' || args=='--help'){
+var args = process.argv.slice(2);
+if(args.indexOf('-h')!=-1 ||args.indexOf('--help')!=-1){
   console.log('USAGE:');
   console.log('\t sudo node basic.js');
   console.log('\t Sudo is required for libusb');
   console.log('\t -s --verbose : Verbose output of measures');
+  console.log('\t -times=[int] : Make [int] read requests, default 500');
   process.exit(0);
 }
 
 else{
-  verbose=args=='-s' || args=='--verbose';
+  verbose=args.indexOf('-s')!=-1 ||args.indexOf('--verbose')!=-1;
+  var times=500;
+  for(arg in args){
+    if(args[arg].indexOf('=')!=-1){
+      times=parseInt(args[arg].split('=')[1]);
+    }
+  }
 // what a good time to open a new device :)
 var scan = datachan_lib.datachan_device_acquire();
   if (scan.result == datachan_result_enum.success) {
@@ -28,7 +34,7 @@ var scan = datachan_lib.datachan_device_acquire();
       datachan_lib.datachan_device_enable(scan.device);
       var i;
       var count=0;
-      for(i=0;i<500;i++){
+      for(i=0;i<times;i++){
         if(datachan_lib.datachan_device_enqueued_measures(scan.device)){
           var measure;
           if(datachan_lib.datachan_device_is_enabled(scan.device)){
