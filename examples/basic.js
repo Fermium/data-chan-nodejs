@@ -19,7 +19,7 @@ if(args.indexOf('-h')!=-1 ||args.indexOf('--help')!=-1){
 else{
   verbose=args.indexOf('-s')!=-1 ||args.indexOf('--verbose')!=-1;
   var times=500;
-  for(arg in args){
+  for(var arg in args){
     if(args[arg].indexOf('=')!=-1){
       times=parseInt(args[arg].split('=')[1]);
     }
@@ -34,6 +34,10 @@ var scan = datachan_lib.datachan_device_acquire();
       datachan_lib.datachan_device_enable(scan.device);
       var i;
       var count=0;
+      var dc = 0xFF;
+      var buf = /*new Buffer(4);*/new Buffer([6,2]);
+      //buf.writeFloatLE(2.5,0);
+      datachan_lib.datachan_send_async_command(dev,3,buf,buf.length);
       for(i=0;i<times;i++){
         if(datachan_lib.datachan_device_enqueued_measures(scan.device)){
           var measure;
@@ -42,24 +46,25 @@ var scan = datachan_lib.datachan_device_acquire();
             measure =ref.deref(mes);
             count++;
           }
-            var tmp= {
-              'time' : measure.time*1000+measure.millis,
-              'ch1' : null,
-              'ch2' : null,
-              'ch3' : null,
-              'ch4' : null,
-              'ch5' : null,
-              'ch6' : null,
-              'ch7' : null,
-              'ch8' : null,
-            }
-            for(j=0;j<measure.measureNum;j++){
-              tmp['ch'+measure.channels[j]]=measure.values[j];
-            }
-            if(verbose){
-              console.log(tmp)
-            }
+          var tmp= {
+            'time' : measure.time*1000+measure.millis,
+            'ch1' : null,
+            'ch2' : null,
+            'ch3' : null,
+            'ch4' : null,
+            'ch5' : null,
+            'ch6' : null,
+            'ch7' : null,
+            'ch8' : null,
+          };
+          for(j=0;j<measure.measureNum;j++){
+            tmp['ch'+measure.channels[j]]=measure.values[j];
           }
+          datachan_lib.datachan_clean_measure(mes);
+          if(verbose){
+            console.log(tmp);
+          }
+        }
       }
       console.log("Acquired " + count + " measures");
   	// release the device

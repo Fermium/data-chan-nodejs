@@ -24,7 +24,7 @@ var datachan_acquire_result_t = struct({
 
 
 
-module.exports.lib =  ffi.Library('libDataChan',{
+module.exports.lib =  ffi.Library('./libDataChan',{
   'datachan_is_initialized' : [ref.types.bool,[]],
   'datachan_init' : [ref.types.void,[]],
   'datachan_shutdown' : [ref.types.void,[]],
@@ -37,7 +37,8 @@ module.exports.lib =  ffi.Library('libDataChan',{
   'datachan_send_async_command' : [ref.types.void,[datachan_device_t_ptr,ref.types.uint8,uint8_t_ptr,ref.types.uint8]],
   'datachan_device_dequeue_measure' : [measure_t_ptr,[datachan_device_t_ptr]],
   'datachan_device_enqueued_measures' : [ref.types.uint32,[datachan_device_t_ptr]],
-  'datachan_device_set_config' : [ref.types.void,[datachan_device_t_ptr,ref.types.uint32,ref.types.uint8,void_ptr,ref.types.uint16]]
+  'datachan_device_set_config' : [ref.types.void,[datachan_device_t_ptr,ref.types.uint32,ref.types.uint8,void_ptr,ref.types.uint16]],
+  'datachan_clean_measure' : [ref.types.void, [measure_t_ptr]]
 
 });
 module.exports.search_enum = {
