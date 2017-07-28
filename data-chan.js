@@ -23,8 +23,7 @@ var datachan_acquire_result_t = struct({
 });
 
 
-console.log(__dirname);
-module.exports.lib =  ffi.Library(__dirname+'/libDataChan',{
+module.exports.lib =  ffi.Library((__dirname+'/libDataChan').replace('app.asar','app.asar.unpacked'),{
   'datachan_is_initialized' : [ref.types.bool,[]],
   'datachan_init' : [ref.types.void,[]],
   'datachan_shutdown' : [ref.types.void,[]],
@@ -48,5 +47,10 @@ module.exports.search_enum = {
   'malloc_fail' : 0x03,
   'unknown' : 0x04,
   'success' : 0xFF
-}
+};
+module.exports.commands = {
+  'set_current_output' : 0x01,
+  'set_heater_state' : 0x02,
+  'set_channel_gain' : 0x03
+};
 module.exports.MAX_MEASURE_NUM = MAX_MEASURE_NUM;
