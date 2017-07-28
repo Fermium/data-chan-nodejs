@@ -35,7 +35,7 @@ To publish, run:
 ```shell
 npm version patch/minor/major
 git push
-# and stop here, no git publish, the CI will take care of that!
+# and stop here, no npm publish, the CI will take care of that!
 ```
 
 ---
