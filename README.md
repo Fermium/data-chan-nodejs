@@ -13,7 +13,7 @@
 
 This library implements NodeJS APIs for [Data-chan](https://github.com/neroreflex/data-chan)
 
-It uses [foreign function interface](https://github.com/node-ffi/node-ffi) to do so.
+It uses [foreign function interface](https://github.com/node-ffi/node-ffi) to do so, and is compatible with both NodeJS and [Electron](https://electron.atom.io/) applications
 
 To install:
 
