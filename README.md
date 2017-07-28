@@ -30,7 +30,16 @@ npm rebuild
 npm run test
 ```
 
+To publish, run:
+
+```shell
+npm version patch/minor/major
+git push
+# and stop here, no git publish, the CI will take care of that!
+```
+
 ---
+
 
 <a href="https://twitter.com/intent/user?screen_name=fermiumlabs">
     <img src="https://img.shields.io/twitter/follow/fermiumlabs.svg?style=social&label=Follow" alt="Follow Fermium LABS on Twitter" align="right" />
