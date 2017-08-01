@@ -29,7 +29,7 @@ else{
     }
   }
 // what a good time to open a new device :)
-var scan = datachan_lib.datachan_device_acquire();
+var scan = datachan_lib.datachan_device_acquire(0x16d0,0x0c9b);
   if (scan.result == datachan_result_enum.success) {
       console.log('Device opened');
 
